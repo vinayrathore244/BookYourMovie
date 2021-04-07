@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+</head>
+
+<body>
+  <body onload="onLoaderFunc()">
+    <div class="inputForm">
+      <center>
+        Name *: <input type="text" id="Username" required>
+        Number of Seats *: <input type="number" id="Numseats" required>
+        <br/><br/>
+        <button onclick="takeData()">Start Selecting</button>
+      </center>
+    </div>
+    <div class="seatStructure">
+      <center>
+        <table id="seatsBlock">
+          <p id="notification"></p>
+          <tr>
+            <td colspan="14"><div class="screen">SCREEN</div></td>
+            <td rowspan="20">
+              <div class="smallBox greenBox">Selected Seat</div> <br/>
+              <div class="smallBox redBox">Reserved Seat</div><br/>
+              <div class="smallBox emptyBox">Empty Seat</div><br/>
+            </td>
+            <br/>
+          </tr>
+          <tr>
+            <% for i in 1..12 do %>
+            <td><%=i%></td>
+            <% end %>
+          </tr>
+          <% arr = ['A','B','C','D','E','F','G','H','I','J']%>
+          <% arr.each do |i| %>
+          <tr>
+            <td><%=i%></td>
+            <% for j in 1..12 do %>
+            <td><input type="checkbox" class="seats" value="<%=i%><%=j%>"></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </table>
+        <br/><button onclick="updateTextArea()">Confirm Selection</button>
+      </center>
+    </div>
+    <br/><br/>
+    <div class="displayerBoxes">
+      <center>
+        <table class="Displaytable">
+          <tr>
+            <th>Name</th>
+            <th>Number of Seats</th>
+            <th>Seats</th>
+          </tr>
+          <tr>
+            <td><textarea id="nameDisplay"></textarea></td>
+            <td><textarea id="NumberDisplay"></textarea></td>
+            <td><textarea id="seatsDisplay"></textarea></td>
+          </tr>
+        </table>
+      </center>
+    </div>
+  </body>
+</body>
+</html>
+
+<%= link_to "Continue", new_charge_path, :class =>" btn btn-success" %>

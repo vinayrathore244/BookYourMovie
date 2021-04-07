@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seat_no: MyString
+  seat_available: false
+  date: 2021-04-03
+
+two:
+  seat_no: MyString
+  seat_available: false
+  date: 2021-04-03

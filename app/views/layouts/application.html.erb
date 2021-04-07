@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BookYourMovie</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <style type="text/css">
+    .card {display:inline-block;}
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand fixed-top  bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class = "navbar-brand "href="#">
+          <%= image_tag '/images/logo.png' %>
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <% if !user_signed_in? %>
+        <li class = "btn btn-outline-info"><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
+        <li>
+          <% if user_signed_in? %>
+          <%= button_to "Logout", destroy_user_session_path, :class => "btn btn-outline-info", method: :delete %>
+          <% end %>
+        </li>
+        <li>
+          <% if has_role? :admin %>
+          <%= button_to "create movie", new_movie_show_path(),method: :get, 
+          :class => "btn btn-outline-info" %>
+          <% end %>
+        </li>
+        <li>
+          <% if !has_role? :admin  %>
+          <% if user_signed_in? %>
+          <%= button_to "Checkout", movie_shows_path(),method: :get, 
+          :class => "btn btn-success" %>
+          <% end %>
+          <% end %>
+        </li>
+        <li>
+          <a class="nav-link" href="#"></a>
+        </li>
+      </ul>
+    </nav>
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible ">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="notice"><%= notice %></p>
+      </div>
+    <%end%>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger alert-dismissible ">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <%end%>
+    <%= yield %>
+  </body>
+</html>

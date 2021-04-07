@@ -1,0 +1,32 @@
+<%= form_with(model: cashier, local: true) do |form| %>
+  <% if cashier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cashier.errors.count, "error") %> prohibited this cashier from being saved:</h2>
+
+      <ul>
+      <% cashier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :employee_name %>
+    <%= form.text_field :employee_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employee_address %>
+    <%= form.text_area :employee_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employee_salary %>
+    <%= form.text_field :employee_salary %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

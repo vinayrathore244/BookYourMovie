@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employee name:</strong>
+  <%= @cashier.employee_name %>
+</p>
+
+<p>
+  <strong>Employee address:</strong>
+  <%= @cashier.employee_address %>
+</p>
+
+<p>
+  <strong>Employee salary:</strong>
+  <%= @cashier.employee_salary %>
+</p>
+
+<%= link_to 'Edit', edit_cashier_path(@cashier) %> |
+<%= link_to 'Back', cashiers_path %>

@@ -1,0 +1,33 @@
+<% @movie_shows.each do |movie_show| %>
+     <% if has_role? :admin  %>
+     <%= link_to 'Edit', edit_movie_show_path(movie_show) %>
+     <%= link_to 'Destroy', movie_show, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    
+<div class="card mx-md-n5" style="width: 18rem;">
+  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+   <!-- <video controls width="120" height="140" src = "<%= movie_show.video %>"></video> -->
+  <div class="card-body">
+    <video controls width="220" height="140" src = "<%= movie_show.video %>"></video>
+    <h5 class="Movie text-primary"><%= movie_show.movie_name %></h5>
+    <p class="language"><%= movie_show.movie_language %></p>
+    <p class="Length"><%= movie_show.movie_hour %></p>
+    <p class="type"><%= movie_show.movie_type %></p>
+    <p class="Movie-Date"><%= movie_show.movie_date %></p>
+    <%= link_to 'Show', movie_show, class: "btn btn-primary" %>
+  </div>
+</div>
+<%end%>
+<!-- 
+  <tbody>
+    <% @movie_shows.each do |movie_show| %>
+      <tr>
+        <td><%= link_to 'Show', movie_show %></td>
+        <td><%= link_to 'Edit', edit_movie_show_path(movie_show) %></td>
+        <td><%= link_to 'Destroy', movie_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br> -->

@@ -1,0 +1,53 @@
+<%= form_with(model: booking_ticket, local: true) do |form| %>
+  <% if booking_ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(booking_ticket.errors.count, "error") %> prohibited this booking_ticket from being saved:</h2>
+
+      <ul>
+      <% booking_ticket.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% if has_role? :admin  %>
+  <div class="field">
+    <%= form.label :No_Of_Tickets_Available %>
+    <%= form.text_field :No_Of_Tickets_Available %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Movie_Name %>
+    <%= form.text_field :Movie_Name %>
+  </div>
+
+ <!--  <div class="field">
+    <%= form.label :Ticket_Number %>
+    <%= form.text_field :Ticket_Number %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label :Date %>
+    <%= form.text_field :Date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Time %>
+    <%= form.text_field :Time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Venue %>
+    <%= form.text_field :Venue %>
+  </div>
+
+ <!--  <div class="field">
+    <%= form.label :Ticket_ID %>
+    <%= form.text_field :Ticket_ID %>
+  </div>
+ -->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<% end %>

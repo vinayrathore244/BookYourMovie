@@ -1,0 +1,38 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No of tickets available:</th>
+      <th scope="col">Movie name:</th>
+      <th scope="col">Date:</th>
+      <th scope="col">Time:</th>
+      <th scope="col">Venue:</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <tbody>
+    <% @booking_tickets.each do |booking_ticket| %>
+      <tr>
+        <td><%= booking_ticket.No_Of_Tickets_Available %></td>
+        <td><%= booking_ticket.Movie_Name %></td>
+        <!-- <td><%= booking_ticket.Ticket_Number %></td> -->
+        <td><%= booking_ticket.Date %></td>
+        <td><%= booking_ticket.Time %></td>
+        <td><%= booking_ticket.Venue %></td>
+        <td><%= booking_ticket.Ticket_ID %></td>
+        <td><%= link_to 'Book Now', booking_ticket %></td>
+        </tr>
+        <% if has_role? :admin %>
+        <%= link_to 'Edit', edit_booking_ticket_path(booking_ticket)%>
+        <%= link_to 'Destroy', booking_ticket, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+   <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if has_role? :admin %>
+<%= link_to 'New Booking Ticket', new_booking_ticket_path %>
+<% end %>
+
+
