@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require demo
 //= require booking_tickets
+//= require charges
 //= require turbolinks
 //= require_tree.

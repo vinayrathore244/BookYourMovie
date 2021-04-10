@@ -8,9 +8,9 @@ class BookingTicketsController < ApplicationController
   end
 
   def reserve
-    # @allSeatsVals = params[:allSeatsVals[]] #js variable
     logger.debug "\n#{params[:allSeatsVals]}, #{params[:allSeatsVals][1]}\n"
     @allSeatsVals = JSON.parse(params[:allSeatsVals])
+
     @allSeatsVals.each {
      |s|
      @seat = Seat.where(seat_no: s).update(seat_available: false)

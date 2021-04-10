@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'charges/new'
+  get 'charges/create'
   resources :payments
   resources :booking_tickets do
     collection do
@@ -12,11 +14,7 @@ Rails.application.routes.draw do
   end
   resources :cashiers
   resources :customers
-  resources :charges do
-    collection do
-      get ':create', to: "charges#create", as: 'showing'
-    end
-  end
+  resources :charges, only: [:new, :create]
   get 'home/index'
   devise_for :users
    root to: "movie_shows#index"

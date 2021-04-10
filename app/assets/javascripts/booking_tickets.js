@@ -27,23 +27,31 @@ function updateTextArea() {
      var allNameVals = [];
      var allNumberVals = [];
      var allSeatsVals = [];
-
+     var price =150;
+     var totalAmount = 0;
      //Storing in Array
      allNameVals.push($("#Username").val());
      allNumberVals.push($("#Numseats").val());
      $('#seatsBlock :checked').each(function() {
        allSeatsVals.push($(this).val());
      });
+     len = $("#Numseats").val();
+     totalAmount = len*price;
 
      //Displaying
      $('#nameDisplay').val(allNameVals);
      $('#NumberDisplay').val(allNumberVals);
      $('#seatsDisplay').val(allSeatsVals);
+     $('#seatPrice').val(totalAmount);
+     
      $.ajax({
 
       type: "GET",
       url: "/booking_tickets/reserve",
       data: { allSeatsVals: JSON.stringify(allSeatsVals) },
+      type: "GET",
+      url: "/charges/create",
+      data: { totalAmount: JSON.stringify(totalAmount) },
       success: function() { alert("Success!"); }
       });
 
@@ -78,6 +86,7 @@ function getCookie(cname) {
 
 $(":checkbox").click(function() {
   if ($("input:checked").length == ($("#Numseats").val())) {
+    // total = price * ($("#Numseats").val());
     $(":checkbox").prop('disabled', true);
     $(':checked').prop('disabled', false);
   }
